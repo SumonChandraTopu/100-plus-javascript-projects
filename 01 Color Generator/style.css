@@ -13,44 +13,75 @@ body {
 h2 {
   text-align: center;
 }
-.btn-container {
+/* .btn-container {
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: center;
-}
-.click-btn,
-.copy-color-btn {
+} */
+.click-btn {
   background: rgba(255, 255, 255, 0.191);
-  border: 1px solid gray;
   padding: 0.6rem 2rem;
   cursor: pointer;
+  border: none;
   font-size: 18px;
+  margin: 0 auto;
+  display: block;
 }
 .input-group {
   display: flex;
   justify-content: center;
   margin: 1rem 0;
-  gap: 1rem;
+  gap: 10px;
   align-items: center;
 }
 .input-code {
   font-size: 1rem;
-  width: 110px;
+  width: 150px;
   text-align: center;
-
-  border-radius: 5px;
+  padding: 5px 20px;
   background: rgba(255, 255, 255, 0.191);
   color: #000;
 }
 .copy-btn {
-  font-size: 1rem;
-  width: 80px;
+  font-size: 1.1rem;
   text-align: center;
-
-  border-radius: 5px;
+  padding: 5px 20px;
   background: rgba(255, 255, 255, 0.191);
   color: #000;
   cursor: pointer;
   border: none;
+}
+/* =================== Toast Message ============================= */
+
+.toast-container {
+  background-color: #ffffff49;
+  box-shadow: 0px 0px 30px -10px #252525;
+  position: absolute;
+  border-radius: 10px;
+  top: 2rem;
+  right: 2rem;
+  padding: 1rem 2rem;
+}
+.toast-animation-slide-in {
+  animation: slide-in 0.5s ease-in;
+}
+.toast-animation-slide-out {
+  animation: slide-out 0.5s ease-in;
+}
+@keyframes slide-in {
+  from {
+    top: -100px;
+  }
+  to {
+    top: 2rem;
+  }
+}
+@keyframes slide-out {
+  from {
+    top: 2rem;
+  }
+  to {
+    top: -50px;
+  }
 }
