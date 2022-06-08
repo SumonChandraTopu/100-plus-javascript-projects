@@ -11,12 +11,29 @@
   <body>
     <div class="main">
       <h2>Click the button to generate random RGB color.</h2>
-      <div class="input-group">
-        <span>#</span>
-        <input id="code-text" class="input-code" value="000000" />
-        <button id="copy-btn" title="Copy to clipboard" class="copy-btn">
-          Copy
-        </button>
+      <div class="input-group-container">
+        <label class="lable" for="code-text1">HAX Code</label>
+        <div class="input-group">
+          <span>#</span>
+          <input id="code-text" class="input-code" value="000000" />
+          <button id="copy-btn" title="Copy to clipboard" class="copy-btn">
+            Copy
+          </button>
+        </div>
+      </div>
+      <div class="input-group-container">
+        <label class="lable" for="code-text2">RGB Code</label>
+        <div class="input-group">
+          <input
+            id="code-text2"
+            class="input-code2"
+            disabled
+            value="rgb(red, green, blue)"
+          />
+          <button id="copy-btn" title="Copy to clipboard" class="copy-btn">
+            Copy
+          </button>
+        </div>
       </div>
 
       <button id="generate-btn" class="click-btn">Generate random color</button>

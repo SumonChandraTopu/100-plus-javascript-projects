@@ -23,6 +23,9 @@ h2 {
   display: block;
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
 }
+.input-group-container {
+  margin: 1rem 0;
+}
 .input-group {
   display: flex;
   justify-content: center;
@@ -35,8 +38,12 @@ h2 {
   position: absolute;
   right: 64%;
   background-color: #c0c0c0;
-  padding: 4px 10px;
+  padding: 5px 10px;
   cursor: default;
+}
+.lable {
+  text-align: center;
+  display: block;
 }
 .input-code {
   font-size: 1rem;
@@ -49,6 +56,20 @@ h2 {
   color: #000;
 }
 .input-code:focus {
+  border: none;
+  outline: none;
+}
+.input-code2 {
+  font-size: 1rem;
+  width: 250px;
+  text-align: center;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+  border: none;
+  padding: 5px 20px;
+  background: rgba(255, 255, 255, 0.191);
+  color: #000;
+}
+.input-code2:focus {
   border: none;
   outline: none;
 }
