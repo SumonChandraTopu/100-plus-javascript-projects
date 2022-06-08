@@ -7,9 +7,7 @@ const generateRGB = () => {
   const r = Math.floor(Math.random() * 255);
   const g = Math.floor(Math.random() * 255);
   const b = Math.floor(Math.random() * 255);
-
   const RGBColor = `rgb(${r}, ${g}, ${b})`;
-
   document.body.style.backgroundColor = RGBColor;
   codeText.innerText = RGBColor;
 };
@@ -27,27 +25,30 @@ const generateHax = () => {
   const g = Math.floor(Math.random() * 255);
   const b = Math.floor(Math.random() * 255);
   // Handle copy button
-  const haxColor = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
-  document.body.style.backgroundColor = haxColor;
+  const haxColor = `${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+  document.body.style.backgroundColor = `#${haxColor}`;
   codeText.value = haxColor;
 };
 
 let div = null;
 // Copy the color code
 changeBtn.addEventListener("click", function () {
-  navigator.clipboard.writeText(codeText.value);
+  navigator.clipboard.writeText(`#${codeText.value}`);
   if (div !== null) {
     div.remove();
     div = null;
   }
   // Generate Toast message
-  generateToastMessage(`${codeText.value} copied!`);
+  generateToastMessage(`#${codeText.value} copied!`);
 });
 codeText.addEventListener("keyup", function (e) {
-  const color = e.target.value;
+  const colorCode = e.target.value;
   // console.log(color);
-  if (color && isValidHax(color)) {
-    document.body.style.backgroundColor = color;
+  if (colorCode) {
+    codeText.value = colorCode.toUpperCase();
+    if (isValidHax(colorCode)) {
+      document.body.style.backgroundColor = `#${colorCode}`;
+    }
   }
 });
 const generateToastMessage = (msg) => {
@@ -64,16 +65,15 @@ const generateToastMessage = (msg) => {
   document.body.appendChild(div);
 };
 
-// Type the input field and update the code
+// Type the input field and update the color code
 /**
  * @param {string} color: ;/
  */
 const isValidHax = (color) => {
-  if (color.length !== 7) return false;
-  if (color[0] !== "#") return false;
-  color.substring(1);
-  return /^[0-9A-Fa-f]{6}/i.test(color);
+  if (color.length !== 6) return false;
+  return /^[0-9A-Fa-f]{6}$/i.test(color);
 };
+// console.log(isValidHax("#f3f3f3"));
 generateBtn.addEventListener("click", function () {
   // haxGenerator();
   // generateRGB();
