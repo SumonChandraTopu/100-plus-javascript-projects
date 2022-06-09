@@ -1,8 +1,8 @@
 const generateBtn = document.getElementById("generate-btn");
 const copyBtn = document.getElementById("copy-btn");
+const copyBtn2 = document.getElementById("copy-btn2");
 const codeText = document.getElementById("code-text");
 const codeText2 = document.getElementById("code-text2");
-const changeBtn = document.getElementById("copy-btn");
 
 /* ============================ Handle the Generate Button ============= */
 
@@ -46,9 +46,9 @@ const generateRgb = ({ red, green, blue }) => {
 
 /* =========================== Handle the Copy Button ========================= */
 
-// -- Copy the color code
+// Step 1 --> Copy the hax color code
 let div = null;
-changeBtn.addEventListener("click", function () {
+copyBtn.addEventListener("click", function () {
   navigator.clipboard.writeText(`#${codeText.value}`);
   if (div !== null) {
     div.remove();
@@ -56,6 +56,18 @@ changeBtn.addEventListener("click", function () {
   }
   //  -- Call the Toast message
   generateToastMessage(`#${codeText.value} copied!`);
+});
+
+// Step 2 --> Copy the rgb color code
+copyBtn2.addEventListener("click", function () {
+  // console.log("clicked");
+  const color = getDecimalCode();
+  navigator.clipboard.writeText(generateRgb(color));
+  if (div !== null) {
+    div.remove();
+    div = null;
+  }
+  generateToastMessage(`${generateRgb(color)} copied!`);
 });
 
 /* ============================== Input field ============================= */
