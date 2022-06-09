@@ -72,7 +72,7 @@ copyBtn2.addEventListener("click", function () {
 
 /* ============================== Input field ============================= */
 
-//  -- Color code input field
+// Step 1 --> Color code input field
 codeText.addEventListener("keyup", function (e) {
   const colorCode = e.target.value;
   // console.log(color);
@@ -80,9 +80,23 @@ codeText.addEventListener("keyup", function (e) {
     codeText.value = colorCode.toUpperCase();
     if (isValidHax(colorCode)) {
       document.body.style.backgroundColor = `#${colorCode}`;
+      // Update the rgb code in rgb input field
+      codeText2.value = haxToRgb(colorCode);
     }
   }
 });
+
+// Step 2 --> Change the rgb color code by updating hex input field
+/**
+ * @param {string} hax: ;/
+ */
+function haxToRgb(hax) {
+  const red = parseInt(hax.slice(0, 2), 16);
+  const green = parseInt(hax.slice(2, 4), 16);
+  const blue = parseInt(hax.slice(4), 16);
+  return `rgb(${red}, ${green}, ${blue})`;
+}
+// console.log(haxToRgb("ffffff"));
 
 /* ======================== Check validation of the code ======================== */
 /**
