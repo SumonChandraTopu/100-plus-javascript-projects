@@ -5,39 +5,119 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-
-    <title>Document</title>
+    <title>Color code generator</title>
   </head>
   <body>
-    <div class="main">
-      <h2>Click the button to generate random RGB color.</h2>
-      <div class="input-group-container">
-        <label class="lable" for="code-text1">HAX Code</label>
-        <div class="input-group">
-          <span>#</span>
-          <input id="code-text" class="input-code" value="000000" />
-          <button id="copy-btn" title="Copy to clipboard" class="copy-btn">
-            Copy
-          </button>
-        </div>
-      </div>
-      <div class="input-group-container">
-        <label class="lable" for="code-text2">RGB Code</label>
-        <div class="input-group">
-          <input
-            id="code-text2"
-            class="input-code2"
-            disabled
-            value="rgb(red, green, blue)"
-          />
-          <button id="copy-btn2" title="Copy to clipboard" class="copy-btn">
-            Copy
-          </button>
-        </div>
-      </div>
-
-      <button id="generate-btn" class="click-btn">Generate random color</button>
-    </div>
+    <main class="main">
+      <section class="container">
+        <header class="container-head">
+          <h2>Color code generator</h2>
+        </header>
+        <!-- ------------------------- Display the color --------------------------- -->
+        <section class="display-color-container">
+          <div class="label-group">
+            <h3>Display color</h3>
+            <p id="random-color-generator">Random color</p>
+          </div>
+          <div class="display-color" id="display-color"></div>
+        </section>
+        <!-- ------------------ Color Copy ---------------------------------- -->
+        <section class="change-copy-container">
+          <div class="change-color-container">
+            <div class="label-group">
+              <h3>Change & copy color</h3>
+              <p id="copy-color">Copy to clipboard</p>
+            </div>
+            <div class="change-color">
+              <!-- --------------- Select color mode ------------------------------- -->
+              <div class="radio-container">
+                <h5>Select copy mode</h5>
+                <div class="radio">
+                  <div class="hax" id="hax">
+                    <input type="radio" checked name="Hex" id="color-mode-hex" />
+                    <p>Hex</p>
+                  </div>
+                  <div class="rgb" id="rgb">
+                    <input type="radio" name="RGB" id="color-mode-rgb" />
+                    <p>RGB</p>
+                  </div>
+                </div>
+              </div>
+              <!-- ------------------ Color Code input group ------------------ -->
+              <section>
+                <div class="input-group">
+                  <div class="hex-input">
+                    <label for="hex-input">Hex</label>
+                    <div>
+                      <span>#</span>
+                      <input id="hex-code" class="hex-input" placeholder="000000" />
+                    </div>
+                  </div>
+                  <div class="rgb-input">
+                    <label for="hex-input">RGB</label>
+                    <div>
+                      <span>rgb</span>
+                      <input id="rgb-code" class="rgb-input" placeholder="(red, green, blue)" />
+                    </div>
+                  </div>
+                </section>
+                <!-- --------------------------- Adjust rgb color ---------------------------- -->
+              <div class="adjust-rgb-container">
+                <div class="display-color-code">
+                  <h5>Adjust RGB color</h5>
+                </div>
+                <div class="adjust-rgb">
+                  <div class="red">
+                    <div class="rgb-label-group">
+                      <p>Red</p>
+                      <p id="red-range-label">221</p>
+                    </div>
+                    <div class="range">
+                      <input 
+                       type="range"
+                       min="0"
+                       max="221"
+                       name="" 
+                       id="red-range" />
+                    </div>
+                  </div>
+                  <div class="green">
+                    <div class="rgb-label-group">
+                      <p>Green</p>
+                      <p id="green-range-label">221</p>
+                    </div>
+                    <div class="range">
+                      <input 
+                      type="range" 
+                      name="" 
+                      min="0"
+                      max="221" 
+                      id="green-range" 
+                      />
+                    </div>
+                  </div>
+                  <div class="blue">
+                    <div class="rgb-label-group">
+                      <p>Blue</p>
+                      <p id="blue-range-label">221</p>
+                    </div>
+                    <div class="range">
+                      <input 
+                      type="range" 
+                      name="" 
+                      min="0"
+                      max="221"
+                      id="blue-range" 
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

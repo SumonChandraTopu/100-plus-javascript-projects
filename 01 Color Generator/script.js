@@ -1,114 +1,40 @@
-const generateBtn = document.getElementById("generate-btn");
-const copyBtn = document.getElementById("copy-btn");
-const copyBtn2 = document.getElementById("copy-btn2");
-const codeText = document.getElementById("code-text");
-const codeText2 = document.getElementById("code-text2");
+/**
+ * Name: Sumon Chandra Shil
+ * Date: 13 June 2022.
+ * Description: This is the color picker application with huge dom functionalities
+ */
 
-/* ============================ Handle the Generate Button ============= */
+// Globals
+let dom = null;
 
-generateBtn.addEventListener("click", function () {
-  const color = getDecimalCode();
-  const bgHaxColor = generateHax(color);
-  const bgRGBColor = generateRgb(color);
-  document.body.style.backgroundColor = `#${bgHaxColor}`;
-  codeText2.value = bgRGBColor;
-  codeText.value = bgHaxColor;
-});
+// onload handler
+window.onload = () => {
+  main();
+  // updateColorCodeToDom(defaultColor);
+};
 
-/* ======================= Generate hax & rgb code ======================== */
-//  Step 1 --> Get the hax code function and return it into an obj
-function getDecimalCode() {
-  const red = Math.floor(Math.random() * 255);
-  const green = Math.floor(Math.random() * 255);
-  const blue = Math.floor(Math.random() * 255);
-  return {
-    red,
-    green,
-    blue,
-  };
+function main() {
+  const randomColorGeneratorBtn = document.getElementById(
+    "random-color-generator"
+  );
+  randomColorGeneratorBtn.addEventListener(
+    "click",
+    handleRandomColorGeneratorBtn
+  );
 }
 
-// Step 2 -->  Generate Hexadecimal code
-const generateHax = ({ red, green, blue }) => {
-  const getHaxCode = (value) => {
-    const hax = value.toString(16);
-    return hax.length === 1 ? `0${hax}` : hax;
-  };
-  return `${getHaxCode(red)}${getHaxCode(green)}${getHaxCode(
-    blue
-  )}`.toUpperCase();
-};
+// Events Handlers
 
-//  Step 3 -->  Generate RGB code
-const generateRgb = ({ red, green, blue }) => {
-  return `rgb(${red}, ${green}, ${blue})`;
-};
-
-/* =========================== Handle the Copy Button ========================= */
-
-// Step 1 --> Copy the hax color code
-let div = null;
-copyBtn.addEventListener("click", function () {
-  navigator.clipboard.writeText(`#${codeText.value}`);
-  if (div !== null) {
-    div.remove();
-    div = null;
-  }
-  //  -- Call the Toast message
-  generateToastMessage(`#${codeText.value} copied!`);
-});
-
-// Step 2 --> Copy the rgb color code
-copyBtn2.addEventListener("click", function () {
-  // console.log("clicked");
+function handleRandomColorGeneratorBtn() {
   const color = getDecimalCode();
-  navigator.clipboard.writeText(generateRgb(color));
-  if (div !== null) {
-    div.remove();
-    div = null;
-  }
-  generateToastMessage(`${generateRgb(color)} copied!`);
-});
-
-/* ============================== Input field ============================= */
-
-// Step 1 --> Color code input field
-codeText.addEventListener("keyup", function (e) {
-  const colorCode = e.target.value;
-  // console.log(color);
-  if (colorCode) {
-    codeText.value = colorCode.toUpperCase();
-    if (isValidHax(colorCode)) {
-      document.body.style.backgroundColor = `#${colorCode}`;
-      // Update the rgb code in rgb input field
-      codeText2.value = haxToRgb(colorCode);
-    }
-  }
-});
-
-// Step 2 --> Change the rgb color code by updating hex input field
-/**
- * @param {string} hax: ;/
- */
-function haxToRgb(hax) {
-  const red = parseInt(hax.slice(0, 2), 16);
-  const green = parseInt(hax.slice(2, 4), 16);
-  const blue = parseInt(hax.slice(4), 16);
-  return `rgb(${red}, ${green}, ${blue})`;
+  updateColorCodeToDom(color);
 }
-// console.log(haxToRgb("ffffff"));
+// DOM functions
 
-/* ======================== Check validation of the code ======================== */
 /**
- * @param {string} color: ;/
+ *
+ * @param {string} msg
  */
-const isValidHax = (color) => {
-  if (color.length !== 6) return false;
-  return /^[0-9A-Fa-f]{6}$/i.test(color);
-};
-
-/* ================================== Toast Message generator ========================== */
-// -- Toast message generate
 const generateToastMessage = (msg) => {
   div = document.createElement("div");
   div.innerText = msg;
@@ -120,5 +46,150 @@ const generateToastMessage = (msg) => {
       div.remove();
     });
   });
+
   document.body.appendChild(div);
 };
+
+function updateColorCodeToDom(color) {
+  const hexColor = generateHax(color);
+  const rgbColor = generateRgb(color);
+
+  document.getElementById("display-color").style.backgroundColor = hexColor;
+  document.getElementById("hex-input").value = hexColor;
+  document.getElementById("rgb-input").value = rgbColor;
+  document.getElementById("red-range").value = color.red;
+  document.getElementById("red-range-label").innerText = color.red;
+  document.getElementById("green-range").value = color.green;
+  document.getElementById("green-range-label").innerText = color.green;
+  document.getElementById("blue-range-label").innerTex = color.blue;
+  document.getElementById("blue-range").value = color.blue;
+}
+
+// Utils
+
+/**
+ * Generate and return an object color decimal values
+ * @returns {object}
+ */
+function getDecimalCode() {
+  const red = Math.floor(Math.random() * 255);
+  const green = Math.floor(Math.random() * 255);
+  const blue = Math.floor(Math.random() * 255);
+  return {
+    red,
+    green,
+    blue,
+  };
+}
+
+/**
+ * Take a color of three decimal values and return hexadecimal code
+ * @param {object} color
+ * @returns {string}
+ */
+const generateHax = ({ red, green, blue }) => {
+  const getHaxCode = (value) => {
+    const hax = value.toString(16);
+    return hax.length === 1 ? `0${hax}` : hax;
+  };
+  return `#${getHaxCode(red)}${getHaxCode(green)}${getHaxCode(
+    blue
+  )}`.toUpperCase();
+};
+
+/**
+ * Take a color of three decimal values and return RGB code
+ * @param {object} color
+ * @returns {string}
+ */
+const generateRgb = ({ red, green, blue }) => {
+  return `rgb(${red}, ${green}, ${blue})`;
+};
+
+/** Convert hexadecimal to decimal colors
+ * @param {string} hax:
+ * @returns {object}
+ */
+function haxToDecimalColors(hax) {
+  const red = parseInt(hax.slice(0, 2), 16);
+  const green = parseInt(hax.slice(2, 4), 16);
+  const blue = parseInt(hax.slice(4), 16);
+  return {
+    red,
+    green,
+    blue,
+  };
+}
+
+/**
+ * Check the code of input field
+ * @param {string} color:
+ * @returns {boolean}
+ */
+const isValidHax = (color) => {
+  if (color.length !== 6) return false;
+  return /^[0-9A-Fa-f]{6}$/i.test(color);
+};
+
+// ==========================================================================================
+// ============================================================================================
+// =============================================================================================
+/* const generateBtn = document.getElementById("generate-btn");
+const copyBtn = document.getElementById("copy-btn");
+const copyBtn2 = document.getElementById("copy-btn2");
+const codeText = document.getElementById("code-text");
+const codeText2 = document.getElementById("code-text2"); */
+
+/* ============================ Handle the Generate Button ============= */
+
+/* generateBtn.addEventListener("click", function () {
+  const color = getDecimalCode();
+  const bgHaxColor = generateHax(color);
+  const bgRGBColor = generateRgb(color);
+  document.body.style.backgroundColor = `#${bgHaxColor}`;
+  codeText2.value = bgRGBColor;
+  codeText.value = bgHaxColor;
+}); */
+
+/* =========================== Handle the Copy Button ========================= */
+
+// Step 1 --> Copy the hax color code
+/* copyBtn.addEventListener("click", function () {
+  navigator.clipboard.writeText(`#${codeText.value}`);
+  if (div !== null) {
+    div.remove();
+    div = null;
+  }
+  //  -- Call the Toast message
+  generateToastMessage(`#${codeText.value} copied!`);
+});
+ */
+
+// Step 2 --> Copy the rgb color code
+/* copyBtn2.addEventListener("click", function () {
+  const color = getDecimalCode();
+  navigator.clipboard.writeText(generateRgb(color));
+  if (div !== null) {
+    div.remove();
+    div = null;
+  }
+  generateToastMessage(`${generateRgb(color)} copied!`);
+}); */
+
+/* ============================== Input field ============================= */
+
+// Step 1 --> Color code input field
+/* codeText.addEventListener("keyup", function (e) {
+  const colorCode = e.target.value;
+  // console.log(color);
+  if (colorCode) {
+    codeText.value = colorCode.toUpperCase();
+    if (isValidHax(colorCode)) {
+      document.body.style.backgroundColor = `#${colorCode}`;
+      // Update the rgb code in rgb input field
+      codeText2.value = haxToRgb(colorCode);
+    }
+  }
+}); */
+
+/* ======================== Check validation of the code ======================== */
