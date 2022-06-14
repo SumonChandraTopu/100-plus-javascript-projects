@@ -4,17 +4,32 @@
  * Description: This is the color picker application with huge dom functionalities
  */
 
-// Globals
-let dom = null;
-
-// onload handler
-window.onload = () => {
-  main();
-  // updateColorCodeToDom(defaultColor);
+//============================ Globals =====================
+let toastContainer = null;
+const defaultColor = {
+  red: 246,
+  green: 221,
+  blue: 249,
 };
 
+//================================== onload handler ==========================
+window.onload = () => {
+  main();
+  updateColorCodeToDom(defaultColor);
+};
+
+// ==================================== Main functions ============================
 function main() {
+  // References
+  const redRange = document.getElementById("red-range");
+  const greenRange = document.getElementById("green-range");
+  const blueRange = document.getElementById("blue-range");
   const hexInput = document.getElementById("hex-input");
+  const copyBtn = document.getElementById("copy-to-clipboard");
+
+  copyBtn.addEventListener("click", copyToClipboard);
+
+  // Handle Events
   const randomColorGeneratorBtn = document.getElementById(
     "random-color-generator"
   );
@@ -22,11 +37,23 @@ function main() {
     "click",
     handleRandomColorGeneratorBtn
   );
-
   hexInput.addEventListener("keyup", handleInputField);
+
+  redRange.addEventListener(
+    "change",
+    handleRanges(redRange, greenRange, blueRange)
+  );
+  greenRange.addEventListener(
+    "change",
+    handleRanges(redRange, greenRange, blueRange)
+  );
+  blueRange.addEventListener(
+    "change",
+    handleRanges(redRange, greenRange, blueRange)
+  );
 }
 
-// Events Handlers
+//============================================ Events Handlers =======================================
 
 function handleRandomColorGeneratorBtn() {
   const color = getDecimalCode();
@@ -37,34 +64,76 @@ function handleInputField(e) {
   if (colorCode) {
     this.value = colorCode.toUpperCase();
     if (isValidHax(colorCode)) {
-      // console.log(colorCode);
       const color = haxToDecimalColors(colorCode);
       updateColorCodeToDom(color);
     }
   }
 }
 
-// DOM functions
+function handleRanges(redRange, greenRange, blueRange) {
+  return function () {
+    const color = {
+      red: parseInt(redRange.value),
+      green: parseInt(greenRange.value),
+      blue: parseInt(blueRange.value),
+    };
+    updateColorCodeToDom(color);
+  };
+}
+
+/*-- Copy to Clipboard --*/
+function copyToClipboard() {
+  const colorModes = document.getElementsByName("color-mode");
+  const mode = getCheckedRadios(colorModes);
+  if (mode === null) {
+    throw new Error("Invalid radio input");
+  }
+  if (toastContainer !== null) {
+    toastContainer.remove();
+    toastContainer = null;
+  }
+  if (mode === "hex") {
+    const hexColorCode = document.getElementById("hex-input").value;
+    if (hexColorCode && isValidHax(hexColorCode)) {
+      navigator.clipboard.writeText(`#${hexColorCode}`);
+      generateToastMessage(`#${hexColorCode} Copied`);
+    } else {
+      alert("Invalid Hex code");
+    }
+  } else {
+    const rgbColorCode = document.getElementById("rgb-input").value;
+    if (rgbColorCode) {
+      navigator.clipboard.writeText(`rgb${rgbColorCode}`);
+      generateToastMessage(`rgb${rgbColorCode}`);
+    } else {
+      alert("Invalid RGB code");
+    }
+  }
+}
+//==================================================== DOM functions ====================
 
 /**
- *
+ * Generate the copied toast message in the DOM
  * @param {string} msg
  */
 const generateToastMessage = (msg) => {
-  div = document.createElement("div");
-  div.innerText = msg;
-  div.classList = "toast-container toast-animation-slide-in";
-  div.addEventListener("click", function () {
-    div.classList.remove("toast-animation-slide-in");
-    div.classList.add("toast-animation-slide-out");
-    div.addEventListener("animationend", function () {
-      div.remove();
+  toastContainer = document.createElement("div");
+  toastContainer.innerText = msg;
+  toastContainer.classList = "toast-container toast-animation-slide-in";
+  toastContainer.addEventListener("click", function () {
+    toastContainer.classList.remove("toast-animation-slide-in");
+    toastContainer.classList.add("toast-animation-slide-out");
+    toastContainer.addEventListener("animationend", function () {
+      toastContainer.remove();
     });
   });
 
-  document.body.appendChild(div);
+  document.body.appendChild(toastContainer);
 };
-
+/**
+ * Update the functionalities in the DOM
+ * @param {object} color
+ */
 function updateColorCodeToDom(color) {
   const hexColor = generateHax(color);
   const rgbColor = generateRgb(color);
@@ -80,6 +149,22 @@ function updateColorCodeToDom(color) {
   document.getElementById("green-range-label").innerText = color.green;
   document.getElementById("blue-range-label").innerText = color.blue;
   document.getElementById("blue-range").value = color.blue;
+}
+
+/**
+ * Find the checked element from a list of radio buttons
+ * @param {Array} nodes
+ * @returns {string / null}
+ */
+function getCheckedRadios(nodes) {
+  let checkedValue = null;
+  for (i = 0; i < nodes.length; i++) {
+    if (nodes[i].checked) {
+      checkedValue = nodes[i].value;
+      break;
+    }
+  }
+  return checkedValue;
 }
 
 // Utils
@@ -147,49 +232,3 @@ const isValidHax = (color) => {
   if (color.length !== 6) return false;
   return /^[0-9A-Fa-f]{6}$/i.test(color);
 };
-
-// ==========================================================================================
-// ============================================================================================
-// =============================================================================================
-
-/* ============================ Handle the Generate Button ============= */
-
-/* generateBtn.addEventListener("click", function () {
-  const color = getDecimalCode();
-  const bgHaxColor = generateHax(color);
-  const bgRGBColor = generateRgb(color);
-  document.body.style.backgroundColor = `#${bgHaxColor}`;
-  codeText2.value = bgRGBColor;
-  codeText.value = bgHaxColor;
-}); */
-
-/* =========================== Handle the Copy Button ========================= */
-
-// Step 1 --> Copy the hax color code
-/* copyBtn.addEventListener("click", function () {
-  navigator.clipboard.writeText(`#${codeText.value}`);
-  if (div !== null) {
-    div.remove();
-    div = null;
-  }
-  //  -- Call the Toast message
-  generateToastMessage(`#${codeText.value} copied!`);
-});
- */
-
-// Step 2 --> Copy the rgb color code
-/* copyBtn2.addEventListener("click", function () {
-  const color = getDecimalCode();
-  navigator.clipboard.writeText(generateRgb(color));
-  if (div !== null) {
-    div.remove();
-    div = null;
-  }
-  generateToastMessage(`${generateRgb(color)} copied!`);
-}); */
-
-/* ============================== Input field ============================= */
-
-// Step 1 --> Color code input field
-
-/* ======================== Check validation of the code ======================== */

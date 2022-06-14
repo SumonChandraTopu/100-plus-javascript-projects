@@ -17,7 +17,7 @@
         <section class="display-color-container">
           <div class="label-group">
             <h3>Display color</h3>
-            <p id="random-color-generator">Random color</p>
+            <label for="random-color-generator" id="random-color-generator">Random color</label>
           </div>
           <div class="display-color" id="display-color"></div>
         </section>
@@ -26,23 +26,34 @@
           <div class="change-color-container">
             <div class="label-group">
               <h3>Change & copy color</h3>
-              <p id="copy-color">Copy to clipboard</p>
+              <label for="copy-to-clipboard" id="copy-to-clipboard">Copy to clipboard</label>
             </div>
             <div class="change-color">
               <!-- --------------- Select color mode ------------------------------- -->
-              <div class="radio-container">
-                <h5>Select copy mode</h5>
-                <div class="radio">
-                  <div class="hax" id="hax">
-                    <input type="radio" checked name="Hex" id="color-mode-hex" />
-                    <p>Hex</p>
-                  </div>
-                  <div class="rgb" id="rgb">
-                    <input type="radio" name="RGB" id="color-mode-rgb" />
-                    <p>RGB</p>
-                  </div>
-                </div>
-              </div>
+              <div class="select-copy-mode">
+					<p class="lead">Select Copy Mode</p>
+					<div class="mode-radio-group">
+						<div class="mode-input-group">
+							<input
+								type="radio"
+								name="color-mode"
+								id="color-mode-hex"
+								value="hex"
+								checked
+							/>
+							<label for="color-mode-hex">Hex</label>
+						</div>
+						<div class="mode-input-group">
+							<input
+								type="radio"
+								name="color-mode"
+								id="color-mode-rgb"
+								value="rgb"
+							/>
+							<label for="color-mode-rgb">RGB</label>
+						</div>
+					</div>
+				</div>
               <!-- ------------------ Color Code input group ------------------ -->
               <section>
                 <div class="input-group">

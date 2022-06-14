@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+label {
+  user-select: none;
+}
 .main {
   display: flex;
   align-items: center;
@@ -53,24 +56,18 @@
 }
 
 /* === Change and Copy === */
-.radio-container {
+
+.select-copy-mode {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #959393;
+  margin-top: 1rem;
+  gap: 1rem;
 }
-.radio {
+
+.mode-radio-group {
   display: flex;
-  gap: 20px;
-}
-.hax,
-.rgb {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
+  gap: 1rem;
 }
 
 /* ======== Color code inputs ================= */
