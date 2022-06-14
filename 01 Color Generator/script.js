@@ -15,8 +15,6 @@ window.onload = () => {
 
 function main() {
   const hexInput = document.getElementById("hex-input");
-  const rgbInput = document.getElementById("rgb-input");
-  const displayColor = document.getElementById("display-color");
   const randomColorGeneratorBtn = document.getElementById(
     "random-color-generator"
   );
@@ -25,17 +23,7 @@ function main() {
     handleRandomColorGeneratorBtn
   );
 
-  hexInput.addEventListener("keyup", function (e) {
-    const colorCode = e.target.value;
-    if (colorCode) {
-      hexInput.value = colorCode.toUpperCase();
-      if (isValidHax(colorCode)) {
-        // console.log(colorCode);
-        const color = haxToDecimalColors(colorCode);
-        updateColorCodeToDom(color);
-      }
-    }
-  });
+  hexInput.addEventListener("keyup", handleInputField);
 }
 
 // Events Handlers
@@ -43,6 +31,17 @@ function main() {
 function handleRandomColorGeneratorBtn() {
   const color = getDecimalCode();
   updateColorCodeToDom(color);
+}
+function handleInputField(e) {
+  const colorCode = e.target.value;
+  if (colorCode) {
+    this.value = colorCode.toUpperCase();
+    if (isValidHax(colorCode)) {
+      // console.log(colorCode);
+      const color = haxToDecimalColors(colorCode);
+      updateColorCodeToDom(color);
+    }
+  }
 }
 
 // DOM functions
