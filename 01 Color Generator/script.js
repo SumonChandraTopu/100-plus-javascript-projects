@@ -14,6 +14,9 @@ window.onload = () => {
 };
 
 function main() {
+  const hexInput = document.getElementById("hex-input");
+  const rgbInput = document.getElementById("rgb-input");
+  const displayColor = document.getElementById("display-color");
   const randomColorGeneratorBtn = document.getElementById(
     "random-color-generator"
   );
@@ -21,6 +24,18 @@ function main() {
     "click",
     handleRandomColorGeneratorBtn
   );
+
+  hexInput.addEventListener("keyup", function (e) {
+    const colorCode = e.target.value;
+    if (colorCode) {
+      hexInput.value = colorCode.toUpperCase();
+      if (isValidHax(colorCode)) {
+        // console.log(colorCode);
+        const color = haxToDecimalColors(colorCode);
+        updateColorCodeToDom(color);
+      }
+    }
+  });
 }
 
 // Events Handlers
@@ -29,6 +44,7 @@ function handleRandomColorGeneratorBtn() {
   const color = getDecimalCode();
   updateColorCodeToDom(color);
 }
+
 // DOM functions
 
 /**
@@ -54,14 +70,16 @@ function updateColorCodeToDom(color) {
   const hexColor = generateHax(color);
   const rgbColor = generateRgb(color);
 
-  document.getElementById("display-color").style.backgroundColor = hexColor;
+  document.getElementById(
+    "display-color"
+  ).style.backgroundColor = `#${hexColor}`;
   document.getElementById("hex-input").value = hexColor;
   document.getElementById("rgb-input").value = rgbColor;
   document.getElementById("red-range").value = color.red;
   document.getElementById("red-range-label").innerText = color.red;
   document.getElementById("green-range").value = color.green;
   document.getElementById("green-range-label").innerText = color.green;
-  document.getElementById("blue-range-label").innerTex = color.blue;
+  document.getElementById("blue-range-label").innerText = color.blue;
   document.getElementById("blue-range").value = color.blue;
 }
 
@@ -92,7 +110,7 @@ const generateHax = ({ red, green, blue }) => {
     const hax = value.toString(16);
     return hax.length === 1 ? `0${hax}` : hax;
   };
-  return `#${getHaxCode(red)}${getHaxCode(green)}${getHaxCode(
+  return `${getHaxCode(red)}${getHaxCode(green)}${getHaxCode(
     blue
   )}`.toUpperCase();
 };
@@ -103,7 +121,7 @@ const generateHax = ({ red, green, blue }) => {
  * @returns {string}
  */
 const generateRgb = ({ red, green, blue }) => {
-  return `rgb(${red}, ${green}, ${blue})`;
+  return `(${red}, ${green}, ${blue})`;
 };
 
 /** Convert hexadecimal to decimal colors
@@ -134,11 +152,6 @@ const isValidHax = (color) => {
 // ==========================================================================================
 // ============================================================================================
 // =============================================================================================
-/* const generateBtn = document.getElementById("generate-btn");
-const copyBtn = document.getElementById("copy-btn");
-const copyBtn2 = document.getElementById("copy-btn2");
-const codeText = document.getElementById("code-text");
-const codeText2 = document.getElementById("code-text2"); */
 
 /* ============================ Handle the Generate Button ============= */
 
@@ -179,17 +192,5 @@ const codeText2 = document.getElementById("code-text2"); */
 /* ============================== Input field ============================= */
 
 // Step 1 --> Color code input field
-/* codeText.addEventListener("keyup", function (e) {
-  const colorCode = e.target.value;
-  // console.log(color);
-  if (colorCode) {
-    codeText.value = colorCode.toUpperCase();
-    if (isValidHax(colorCode)) {
-      document.body.style.backgroundColor = `#${colorCode}`;
-      // Update the rgb code in rgb input field
-      codeText2.value = haxToRgb(colorCode);
-    }
-  }
-}); */
 
 /* ======================== Check validation of the code ======================== */

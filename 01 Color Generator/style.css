@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #0893e4;
+  background-color: #c4c4c4;
 }
 /* === Container == */
 .container {
@@ -40,7 +40,6 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;
-  border-bottom: 1px solid #959393;
 }
 .label-group > p {
   color: brown;
@@ -50,7 +49,7 @@
   width: 100%;
   height: 200px;
   background-color: #fff;
-  border: 2px solid #000;
+  border-radius: 10px;
 }
 
 /* === Change and Copy === */
@@ -90,7 +89,7 @@
   padding: 5px 10px;
   cursor: default;
 }
-.input-code {
+/* .hex-input {
   font-size: 1rem;
   width: 150px;
   text-align: center;
@@ -99,10 +98,24 @@
   padding: 5px 20px;
   background: rgba(255, 255, 255, 0.191);
   color: #000;
+} */
+.input {
+  font-size: 1rem;
+  width: 120px;
+  text-align: right;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+  border: none;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.191);
+  color: #000;
 }
-.input-code:focus {
+.input:focus {
   border: none;
   outline: none;
+}
+.rgb-input-field {
+  width: 200px !important;
+  text-align: right;
 }
 .input-code2 {
   font-size: 1rem;
