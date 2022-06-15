@@ -51,7 +51,7 @@ body {
 .deposit-withdraw-container {
   margin-top: 4em;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   background-color: #e6f6f6;
   display: flex;
   justify-content: space-evenly !important;
@@ -113,6 +113,14 @@ body {
   }
 }
 @media only screen and (max-width: 688px) {
+  .deposit-withdraw-container {
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .input-group input {
+    width: 100%;
+  }
   .main {
     width: 90%;
     padding: 10px;
@@ -126,7 +134,7 @@ body {
   .deposit,
   .withdraw,
   .balance {
-    padding: 10px 10px;
+    padding: 10px 20px;
     border-radius: 5px;
   }
   .deposit,
