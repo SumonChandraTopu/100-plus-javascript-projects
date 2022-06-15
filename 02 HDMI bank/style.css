@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #e6f6f6;
+  color: #505050;
+  user-select: none;
+}
+.logo {
+  text-align: center;
+  padding: 10px 0;
+}
+.divider {
+  background-color: #505050;
+  width: 300px;
+  height: 3px;
+  margin: 0 auto;
+}
+/* -------- Main ---------- */
+
+.main {
+  width: 70%;
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 3rem auto;
+  border-radius: 10px;
+}
+
+.balance-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.deposit,
+.withdraw,
+.balance {
+  background-color: #e6f6f6;
+  padding: 10px 50px;
+  text-align: center;
+  border-radius: 10px;
+  user-select: none;
+}
+.money {
+  font-size: 4rem;
+}
+
+/* ---- Deposit & Withdraw -------- */
+.deposit-withdraw-container {
+  margin-top: 4em;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #e6f6f6;
+  display: flex;
+  justify-content: space-evenly !important;
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0;
+}
+.input-group input {
+  padding: 10px;
+  width: 300px;
+  border: none;
+}
+.input-group input:focus {
+  outline: none;
+}
+.input-group button {
+  display: inline;
+  font-size: 1.3rem;
+  padding: 5px 0;
+  cursor: pointer;
+  background: none;
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 5px;
+}
+.input-group button:hover {
+  background-color: #ffffff;
+}
+.history {
+  margin: 10px 0;
+}
+.history-btn {
+  padding: 10px 30px;
+  border-radius: 5px;
+  background-color: #e6f6f6;
+  border: 1px solid #b3b3b3;
+  cursor: pointer;
+}
+/* -- Media Query --*/
+@media only screen and (max-width: 1024px) {
+  .main {
+    width: 90% !important;
+  }
+  .money {
+    font-size: 2.5rem !important;
+  }
+}
+@media only screen and (max-width: 1324px) {
+  .deposit-withdraw-container {
+    justify-content: space-between !important;
+  }
+  .main {
+    width: 80%;
+  }
+  .money {
+    font-size: 3rem;
+  }
+}
+@media only screen and (max-width: 688px) {
+  .main {
+    width: 90%;
+    padding: 10px;
+  }
+  .balance-details {
+    padding: 10px 0;
+  }
+  .money {
+    font-size: 1rem !important;
+  }
+  .deposit,
+  .withdraw,
+  .balance {
+    padding: 10px 10px;
+    border-radius: 5px;
+  }
+  .deposit,
+  .withdraw,
+  .balance h4 {
+    font-size: 0.6rem;
+  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>HDMI | bank</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="logo">HDMI Bank</h1>
+      <div class="divider"></div>
+    </header>
+    <main class="main">
+      <!-- Bank details  -->
+      <section class="balance-details">
+        <div class="deposit">
+          <h4>Deposit</h4>
+          <h2 id="deposit-balance" class="money">$0000</h2>
+        </div>
+        <div class="withdraw">
+          <h4>Withdraw</h4>
+          <h2 id="withdraw-balance" class="money">$0000</h2>
+        </div>
+        <div class="balance">
+          <h4>Balance</h4>
+          <h2 id="total-balance" class="money">$2400000</h2>
+        </div>
+      </section>
+      <!-- Deposit & withdraw  -->
+      <section class="deposit-withdraw-container">
+        <div class="deposit-container">
+          <p>Please Deposit</p>
+          <div class="input-group">
+            <input
+              type="text"
+              class="deposit-inp"
+              placeholder="Type amount"
+              id="deposit-inp"
+            />
+            <button class="deposit-btn" id="deposit-btn">Deposit</button>
+          </div>
+        </div>
+        <div class="withdraw-container">
+          <p>Please Withdraw</p>
+          <div class="input-group">
+            <input
+              type="text"
+              class="withdraw-inp"
+              placeholder="Type amount"
+              id="withdraw-inp"
+            />
+            <button class="withdraw-btn" id="withdraw-btn">Withdraw</button>
+          </div>
+        </div>
+      </section>
+      <div class="history">
+        <button class="history-btn" id="history-btn">History</button>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
