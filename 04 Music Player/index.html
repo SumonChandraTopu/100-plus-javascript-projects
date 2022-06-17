@@ -9,7 +9,28 @@
   </head>
   <body>
     <main>
-      <h1>hello world</h1>
+      <h4>Music Player</h4>
+      <audio src=""></audio>
+      <div class="music-container" id="music-container">
+        <div class="title">
+          <p id="title">title</p>
+        </div>
+        <div class="img-container">
+          <img src="img/01.jpg" id="img" alt="" />
+        </div>
+        <div class="controller-container">
+          <div class="progressbar-container">
+            <div class="time" id="time-start">0:00</div>
+            <div class="progressbar" id="progressbar"></div>
+            <div class="time" id="time-stop">0:00</div>
+          </div>
+          <div class="controller">
+            <button id="prev">Prev</button>
+            <button id="pause">Pause</button>
+            <button id="Next">Next</button>
+          </div>
+        </div>
+      </div>
     </main>
     <script src="script.js"></script>
   </body>
