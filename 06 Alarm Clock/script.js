@@ -51,7 +51,7 @@ const setAlarm = () => {
   if (isAlarmSet) {
     ringtone.pause();
     alarmTime = "";
-    setBtn.innerText = "Clear alarm";
+    setBtn.innerText = "Set alarm";
     todos.firstElementChild.removeChild(p);
     return (isAlarmSet = false);
   }
@@ -65,6 +65,7 @@ const setAlarm = () => {
   console.log(time);
   alarmTime = time;
   isAlarmSet = true;
+  setBtn.innerText = "Clear alarm";
   notAllowed ? (small.style.display = "block") : (small.style.display = "none");
   let p = `<p id="set-todo" class="todo">
     <span>${time}</span>
