@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Keep Note App with vanilla JavaScript</title>
+  </head>
+  <body>
+    <header class="header" id="header">
+      <h3 class="header_text" id="header_text">Keep note</h3>
+      <div class="head_inputs">
+        <input type="text" id="header_inp" />
+        <span class="search" id="search">Search </span>
+      </div>
+    </header>
+    <main class="main" id="main">
+      <section class="take_note_inp">
+        <input value="" type="text" placeholder="Title" id="title_inp" />
+        <input
+          value=""
+          type="text"
+          id="note_inp"
+          placeholder="Take a note..."
+        />
+        <button class="add_btn" id="add_btn">Add note</button>
+      </section>
+      <section class="notes_container" id="notes_container"></section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

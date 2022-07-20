@@ -1,0 +1,24 @@
+{
+  "name": "100-javascript-project",
+  "version": "1.0.0",
+  "description": "Here you can find 100+ javascript basic project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SumonChandraTopu/100-plus-javascript-projects.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SumonChandraTopu/100-plus-javascript-projects/issues"
+  },
+  "homepage": "https://github.com/SumonChandraTopu/100-plus-javascript-projects#readme",
+  "dependencies": {
+    "json-server": "^0.17.0"
+  }
+}

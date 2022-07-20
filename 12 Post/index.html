@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Title</title>
+  </head>
+  <body>
+    <header class="header">
+      <h2>Create post</h2>
+    </header>
+    <main>
+      <section class="left-sidebar"></section>
+      <section class="content-container">
+        <div class="form">
+          <div class="post-head">
+            <div class="avatar">
+              <img id="avatar" src="./assets/logo.png" alt="avatar" />
+            </div>
+            <div class="author">
+              <h5 class="name" id="name">Sumon Chandra</h5>
+              <small class="time" id="time">12:25:30 pm</small>
+            </div>
+          </div>
+          <div class="post-inp">
+            <input
+              type="text"
+              value=""
+              placeholder="Whats happening?"
+              name=""
+              id="post-inp"
+              class="post-inp"
+            />
+            <div class="post-assets">
+              <p id="post-img" class="post-img">Img</p>
+              <p id="post-filling" class="post-filling">Filling</p>
+              <p id="post-emoji" class="post-emoji">Emoji</p>
+            </div>
+            <button id="post-btn" class="post-btn" type="submit">Post</button>
+          </div>
+        </div>
+        <!-- =============== Posts ================= -->
+        <div class="posts-container" id="posts-container"></div>
+      </section>
+      <section class="right-sidebar"></section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
