@@ -26,8 +26,8 @@ const mistake = document.querySelector(".mistake span");
 const timeTag = document.querySelector(".time span b");
 const tryAgainBtn = document.getElementById("try-again");
 
-let timer,
-  timeLeft = 60;
+let timer;
+let timeLeft = 60;
 let charIndex = 0;
 let mistakes = 0;
 
@@ -47,7 +47,6 @@ const initTyping = () => {
   if (typedChar == null) {
     if (character[charIndex].innerText !== typedChar) {
       mistakes--;
-      mistake === 0;
     }
     charIndex--;
     // character[charIndex].classList.remove("correct", "incorrect");
